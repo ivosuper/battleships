@@ -1,0 +1,72 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 21.03.2021 г., 0:43:26
+    Author     : ivo
+*/
+.page{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 90vw;
+    height: 90vh;
+    text-align: center;
+}
+.message{
+    margin-top: 10px;
+}
+
+body{
+    
+    color:whitesmoke;
+    background: black;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: fixed ;
+    width: 350px ;
+    height: 350px;
+}
+
+
+table , td{
+    border-collapse: collapse;
+    border: 1px solid whitesmoke;
+    text-align: center;
+}
+table td{
+    
+       -moz-user-select: none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+
+   /*
+     Introduced in Internet Explorer 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+   -ms-user-select: none;
+   user-select: none;
+}
+
+.field{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.field:hover{
+    cursor: pointer;
+    background-color: brown;
+}
+button{
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    
+}
