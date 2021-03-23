@@ -19,14 +19,20 @@ Route::get('/shot', function (){
 });
  * 
  */
+/*
 Route::group(['middleware' => 'api'], function () {
     Route::post('/shot' , 'BattleshipApi@shot')->name('front.shot');
-    Route::get('/newgame' , 'BattleshipApi@newgame')->name('front.newgame');
-    
+    Route::get('/newgame' , 'BattleshipApi@newgame')->name('front.newgame');    
 });
+ * 
+ */
+Route::post('/shot', 'BattleshipApi@shot');
+Route::get('/newgame', 'BattleshipApi@newgame');
 
-//Route::post('/shot', 'BattleshipApi@shot');
-//Route::get('/newgame', 'BattleshipApi@newgame');
+Route::any('{catchall}', 'BattleshipApi@handle')->where('catchall', '.*');
+
+
+
 
 /*
 Route::group(['middleware' => ['web']], function () {
@@ -35,7 +41,9 @@ Route::group(['middleware' => ['web']], function () {
 });
  * 
  */
-
+/*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+ * 
+ */

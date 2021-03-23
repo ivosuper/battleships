@@ -6,18 +6,32 @@ use Illuminate\Http\Request;
 use App\BattleshipModel;
 use Session;
 
+
 class BattleshipApi extends Controller {
 
     public $ships = [5, 4, 4];
     public $battleField;
+    
+    public function handle() {
+        return response()->json(['message' => 'Page Not Found. 404'], 404);
+    }
 
 
-    public function shot(Request $cordinates) {
-
+    public function shot(Request $cordinates ) {
         
+    
+        
+        if(isset($cordinates->x)&& isset($cordinates->y)){
+            $x = $cordinates->x;
+            $y = $cordinates->y;
+            
+        } else {
+            return ['message' => 'This request to the API is not in right format.'];
+        }
 
-        $x = $cordinates->x;
-        $y = $cordinates->y;
+      
+            
+        
 
         if (isset($_SESSION["battleField"])) {
             
