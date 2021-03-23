@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 session_start();
-//Route::get('/','BattleshipWeb@index');
+
 
 Route::group(['middleware' => 'web'], function () {
     Route::get('/' , 'BattleshipWeb@index')->name('front.index');
