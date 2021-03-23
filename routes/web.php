@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 session_start();
-Route::get('/','BattleshipWeb@index');
+//Route::get('/','BattleshipWeb@index');
+
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/' , 'BattleshipWeb@index')->name('front.index');
+});

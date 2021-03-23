@@ -19,9 +19,15 @@ Route::get('/shot', function (){
 });
  * 
  */
+Route::group(['middleware' => 'api'], function () {
+    Route::post('/shot' , 'BattleshipApi@shot')->name('front.shot');
+    Route::get('/newgame' , 'BattleshipApi@newgame')->name('front.newgame');
+    
+});
 
-Route::post('/shot', 'BattleshipApi@shot');
-Route::get('/newgame', 'BattleshipApi@newgame');
+//Route::post('/shot', 'BattleshipApi@shot');
+//Route::get('/newgame', 'BattleshipApi@newgame');
+
 /*
 Route::group(['middleware' => ['web']], function () {
     Route::post('/shot', 'BattleshipApi@shot');

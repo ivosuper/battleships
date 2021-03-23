@@ -1,43 +1,44 @@
 <?php
 
 namespace App\Http\Controllers;
-
-//namespace App\Http\Controllers\Session;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\BattleshipModel;
+use Session;
 
 class BattleshipApi extends Controller {
 
     public $ships = [5, 4, 4];
     public $battleField;
 
+
     public function shot(Request $cordinates) {
-        session(['key' => 'ot apito']);
-        $value = session('key');
-        if ($value === null) {
-            session(['key' => 'ot apito']);
-            $value = session('key');
-        }
+
+        
 
         $x = $cordinates->x;
         $y = $cordinates->y;
 
         if (isset($_SESSION["battleField"])) {
-
+            
+            $this->battleField = session('battleField');
             $this->battleField = $_SESSION["battleField"];
         } else {
             $this->crateBattleField();
+
             $_SESSION["battleField"] = $this->battleField;
         }
-        //return ['message' => session('battleField')[$x . $y]];
+
         if ($this->battleField[$x . $y] == '.') {
             $this->battleField[$x . $y] = '-';
             $_SESSION["battleField"] = $this->battleField;
+
+            
         }
         if ($this->battleField[$x . $y] == 'O') {
             $this->battleField[$x . $y] = 'X';
             $_SESSION["battleField"] = $this->battleField;
+
         }
 
 
@@ -49,7 +50,7 @@ class BattleshipApi extends Controller {
     }
 
     public function newgame() {
-        session(['key' => 'ot apito']);
+
         $this->crateBattleField();
         $_SESSION["battleField"] = $this->battleField;
     }
