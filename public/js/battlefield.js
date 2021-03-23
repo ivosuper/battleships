@@ -5,10 +5,12 @@ const button = document.querySelector('.newgame')
 
 button.addEventListener('click', async ()=>{
     const url = 'http://battleships.ivoiliev.tk/api/newgame';
-
-    const response =  await fetch(url);
-    
-    location.reload(); 
+   
+        const response =  await fetch(url)
+                .then(response => {
+                   !response.ok? message.innerText = 'Грешка няма връзка със сървъра : '+ response.status: location.reload()
+        })
+ 
 
 })
 
@@ -31,13 +33,15 @@ battleField.forEach((field) => {
 
 const  shot = async (x, y, squareState) => {
     let message = ''
-   //console.log(y);
 
     if (squareState == 'X' || squareState == "-") {
         message = 'Вече си стрелял по: ' + x + y
     } else {
         let response=  await checkTheShot(x,y)
-        //console.log(response.message );
+        if(typeof(response) == "undefined"){
+            message = 'Грешка няма връзка със сървъра ';
+            squareState = '.';
+        } else {
         
         if(response.message =='X'){
             message = 'Попадение на :' + x + y;
@@ -51,6 +55,7 @@ const  shot = async (x, y, squareState) => {
         }
         
         if(response.win){message = 'Победа. Всички кораби са потопени.'}
+    }
         
         
     }
@@ -72,7 +77,10 @@ const checkTheShot = async (x,y) => {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(forSending)
     }
+    try{
     const response = await fetch(url,options);
     const result = await response.json();
-    return await result 
+    return  result 
+    } catch(err){}
+    
 }
